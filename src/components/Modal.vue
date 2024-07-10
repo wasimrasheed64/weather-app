@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(['isOpen'])
+defineProps(['isOpen'])
 const emit = defineEmits(['close'])
 </script>
 
