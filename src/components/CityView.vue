@@ -5,7 +5,9 @@ import AsynCityView from '@/components/AsynCityView.vue'
 
 <template>
 <div>
+  <Suspense>
    <AsynCityView/>
+  </Suspense>
 </div>
 </template>
 

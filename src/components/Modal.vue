@@ -8,7 +8,7 @@ const emit = defineEmits(['close'])
     <Transition name="modal-outer">
       <div
         v-show="isOpen"
-        class="absolute w-full bg-black bg-opacity-30 top-0 left-0 flex justify-center px-8"
+        class="absolute w-full bg-black bg-opacity-30 top-0 left-0 flex justify-center px-8 h-screen"
       >
         <Transition name="modal-inner">
           <div v-if="isOpen" class="p-4 bg-white self-start mt-32 max-w-screen">
