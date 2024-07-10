@@ -1,8 +1,10 @@
 <script setup>
 import axios from 'axios'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
 const mapboxAPIKey = import.meta.env.VITE_MAP_BOX_API;
+const router = useRouter();
 const searchQuery = ref('')
 const queryTimeout = ref(null)
 const mapboxSearchResults = ref(null)
@@ -23,6 +25,14 @@ const getSearchResults = () => {
     }
     mapboxSearchResults.value = null
   }, 300)
+}
+const previewCity = (previewCity) => {
+  const [city,state] = previewCity.place_name.split(',');
+  router.push({ name: 'cityView', params: {city:city.trim(), state:state.trim() },query:{
+    lat:previewCity.center[1],
+      lng:previewCity.center[0]
+    }})
+
 }
 </script>
 <template>
