@@ -2,6 +2,7 @@
 import axios from 'axios'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import CityList from '@/components/CityList.vue'
 
 const mapboxAPIKey = import.meta.env.VITE_MAP_BOX_API;
 const router = useRouter();
@@ -30,7 +31,8 @@ const previewCity = (previewCity) => {
   const [city,state] = previewCity.place_name.split(',');
   router.push({ name: 'cityView', params: {city:city.trim(), state:state.trim() },query:{
     lat:previewCity.center[1],
-      lng:previewCity.center[0]
+      lng:previewCity.center[0],
+      preview:true,
     }})
 
 }
@@ -65,6 +67,14 @@ const previewCity = (previewCity) => {
           </template>
         </ul>
       </transition>
+    </div>
+    <div class="flex flex-col gap-4">
+      <Suspense>
+        <CityList />
+        <template #fallback>
+          <p>Loading...</p>
+        </template>
+      </Suspense>
     </div>
   </main>
 </template>

@@ -1,11 +1,35 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 import Modal from '@/components/Modal.vue'
-import { ref } from 'vue'
+import { uid } from "uid";
+import { useLocationStore } from '@/stores/location.js'
+import { ref } from 'vue';
+
+const route = useRoute();
+const router = useRouter();
+const locationStore = useLocationStore();
+
+const addCity = () => {
+  const { city, state } = route.params;
+  locationStore.addLocation({
+    id: uid(),
+    city,
+    state,
+    lat: route.query.lat,
+    lng: route.query.lng
+  });
+  let query = Object.assign({}, route.query);
+  delete query.preview;
+  router.replace({ query });
+}
+
+
 const isOpen = ref(false)
+
 const toggleModal = () => {
   isOpen.value = !isOpen.value
 }
+
 </script>
 <template>
   <header class="sticky top-0 bg-weather-primary shadow-lg">
@@ -23,6 +47,8 @@ const toggleModal = () => {
         ></i>
         <i
           class="fa-solid fa-plus fa-2x hover:text-weather-secondary duration-150 cursor-pointer"
+          v-if="route.query.preview"
+          @click="addCity"
         ></i>
       </div>
       <Modal :isOpen="isOpen" @close="toggleModal">
