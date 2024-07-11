@@ -46,7 +46,7 @@
       <img
         class="w-[150px] h-auto"
         :src="
-          `http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@2x.png`
+          `http://openweathermap.org/img/wn/${weatherData.current.weather[0].icon}@4x.png`
         "
         alt=""
       />
@@ -117,8 +117,8 @@
             alt=""
           />
           <div class="flex gap-2 flex-1 justify-end">
-            <p>H: {{ Math.round(day.temp.max) }}</p>
-            <p>L: {{ Math.round(day.temp.min) }}</p>
+            <p>High: {{ Math.round(day.temp.max) }}</p>
+            <p>Low: {{ Math.round(day.temp.min) }}</p>
           </div>
         </div>
       </div>

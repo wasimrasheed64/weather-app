@@ -31,9 +31,6 @@ describe('ModalComponent', () => {
 
   it('emits close event when close button is clicked', async () => {
     await wrapper.setProps({ isOpen: true })
-    setTimeout(() => {
-      console.log(wrapper.html())
-    }, 1000);
     await wrapper.find('button').trigger('click')
     expect(wrapper.emitted()).toHaveProperty('close')
   })
