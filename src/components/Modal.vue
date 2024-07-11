@@ -1,6 +1,16 @@
 <script setup>
-defineProps(['isOpen'])
+import { watch } from 'vue'
+
+const props = defineProps(['isOpen'])
 const emit = defineEmits(['close'])
+watch(() => props.isOpen, (newVal) => {
+  if (newVal) {
+    document.body.classList.add('overflow-hidden')
+  } else {
+    document.body.classList.remove('overflow-hidden')
+  }
+});
+
 </script>
 
 <template>
@@ -8,6 +18,7 @@ const emit = defineEmits(['close'])
     <Transition name="modal-outer">
       <div
         v-show="isOpen"
+        data-element="modal"
         class="absolute w-full bg-black bg-opacity-30 top-0 left-0 flex justify-center px-8 h-screen"
       >
         <Transition name="modal-inner">
@@ -52,5 +63,8 @@ const emit = defineEmits(['close'])
 
 .modal-inner-leave-to {
   transform: scale(0.8);
+}
+.body-overflow-hidden {
+  overflow: hidden;
 }
 </style>

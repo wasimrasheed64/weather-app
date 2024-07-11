@@ -32,7 +32,6 @@ export const useLocationStore = defineStore('location', () => {
 
   const getLocations = async () => {
     const requests = [];
-    console.log(locations.value);
     locations.value.forEach((city) => {
       requests.push(
         axios.get(
