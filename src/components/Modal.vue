@@ -14,15 +14,13 @@ watch(() => props.isOpen, (newVal) => {
 </script>
 
 <template>
-  <Teleport to="body">
     <Transition name="modal-outer">
       <div
         v-show="isOpen"
-        data-element="modal"
         class="absolute w-full bg-black bg-opacity-30 top-0 left-0 flex justify-center px-8 h-screen"
       >
         <Transition name="modal-inner">
-          <div v-if="isOpen" class="p-4 bg-white self-start mt-32 max-w-screen">
+          <div v-if="isOpen" class="p-4 bg-white self-start mt-32 max-w-screen modal-inner">
             <slot></slot>
             <button
               @click="emit('close')"
@@ -34,7 +32,6 @@ watch(() => props.isOpen, (newVal) => {
         </Transition>
       </div>
     </Transition>
-  </Teleport>
 </template>
 
 <style scoped>
